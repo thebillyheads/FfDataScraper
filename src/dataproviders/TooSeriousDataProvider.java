@@ -133,6 +133,8 @@ public class TooSeriousDataProvider extends DataProviderObservable {
 			return "BAC,FWD";
 		case "R/F":
 			return "FWD,RUC";
+		case "R/D":
+			return "BAC,RUC";
 		}
 		return position;
 	}
