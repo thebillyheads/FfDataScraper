@@ -9,8 +9,10 @@ public class Player {
 	public int games;
 	public String team;
 	public double total;
+	public int breakEven;
+	public int pointsLastRound;
 
-	public Player(int id, String name, String team, String position, int price, int games, int total) {
+	public Player(int id, String name, String team, String position, int price, int games, int total, int breakEven, int pointsLastRound) {
 		this.id = id;
 		this.name = name;
 		this.team = team;
@@ -18,6 +20,8 @@ public class Player {
 		this.price = price;
 		this.games = games;
 		this.total = total;
+		this.breakEven = breakEven;
+		this.pointsLastRound = pointsLastRound;
 	}
 
 	@Override
@@ -57,10 +61,21 @@ public class Player {
 			return false;
 		}
 
-		// average
+		// total
 		if (this.total != other.total) {
 			return false;
 		}
+		
+		// break even
+		if (this.breakEven != other.breakEven) {
+			return false;
+		}
+		
+		// Points last round
+		if (this.pointsLastRound != other.pointsLastRound) {
+			return false;
+		}
+		
 		return true;
 	}
 

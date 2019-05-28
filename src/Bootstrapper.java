@@ -6,6 +6,7 @@ import gui.MainForm;
 import interfaces.IDataProvider;
 import utilities.ExcelAdapter;
 import utilities.IntComparator;
+import utilities.TakenPlayersReader;
 
 public class Bootstrapper {
 	/**
@@ -19,11 +20,12 @@ public class Bootstrapper {
 					MainForm frame = new MainForm(intComparator);
 
 					@SuppressWarnings("unused")
+					TakenPlayersReader takenPlayersReader = new TakenPlayersReader("C:\\Users\\tist\\Downloads\\DT\\Draft 2019\\SC Draft 2019 -1.0.xlsm", new Observer[] { frame });					
+					
+					@SuppressWarnings("unused")
 					ExcelAdapter excelAdapter = new ExcelAdapter(frame.getTable());
 
 					// Create the data provider
-					// IDataProvider dataProvider = new DtLiveDataProvider(new Observer[] {frame});
-					@SuppressWarnings("unused")
 					IDataProvider dataProvider = new TooSeriousDataProvider(new Observer[] { frame });
 
 					Runtime.getRuntime().addShutdownHook(new Thread() {

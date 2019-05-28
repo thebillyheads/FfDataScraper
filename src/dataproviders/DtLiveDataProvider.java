@@ -58,7 +58,9 @@ public class DtLiveDataProvider extends DataProviderObservable {
 						int price = Integer.parseInt(cells.get(5).asText());
 						int games = Integer.parseInt(cells.get(7).asText());
 						int total = 0;
-						Player player = new Player(rowCount, name, "", position, price, games, total);
+						int breakEven = 0;
+						int pointsLastRound = 0;
+						Player player = new Player(rowCount, name, "", position, price, games, total, breakEven, pointsLastRound);
 						postData(player);
 					}
 				}

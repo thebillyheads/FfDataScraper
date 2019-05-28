@@ -65,6 +65,11 @@ public class TooSeriousDataProvider extends DataProviderObservable {
 				}
 			}
 
+			// To cater for TooSerious being a bit shit, add the following players
+			// Tom Boyd
+			// postLog(new Log(LogLevel.Info, "Adding Tom Boyd because TooSerious doesn't have him listed."));
+			// postData(new Player(totalRowCount + 1, "Tom Boyd", "WBD", "FWD,RUC", 364200, 0, 0));		
+			
 			// Add Matthew Cottrell MID,FWD CAR 102400 because for some reason Too Serious
 			// doesn't have him anymore.
 			// postLog(new Log(LogLevel.Info, "Adding Matthew Cottrell because TooSerious doesn't have him listed."));
@@ -91,9 +96,11 @@ public class TooSeriousDataProvider extends DataProviderObservable {
 				int price = Integer.parseInt(cells.get(5).asText().replace(",", "").trim());
 				int games = Integer.parseInt(cells.get(7).asText().trim());
 				int total = Integer.parseInt(cells.get(6).asText().trim());
-				Player player = new Player(totalRowCount + 1, name, team, position, price, games, total);
+				int breakEven = Integer.parseInt(cells.get(11).asText().trim());
+				int pointsLastRound = Integer.parseInt(cells.get(10).asText().trim());
+				Player player = new Player(totalRowCount + 1, name, team, position, price, games, total, breakEven, pointsLastRound);
 
-				player.name = adjustNamesToMatchTheStupicSpreadSheet(player);
+				player.name = adjustNamesToMatchTheStupidSpreadSheet(player);
 
 				if (postData(player)) {
 					return true;
@@ -105,7 +112,7 @@ public class TooSeriousDataProvider extends DataProviderObservable {
 		return false;
 	}
 
-	private String adjustNamesToMatchTheStupicSpreadSheet(Player player) {
+	private String adjustNamesToMatchTheStupidSpreadSheet(Player player) {
 		if (player.name.equalsIgnoreCase("Mitchell Mcgovern") && player.team.equalsIgnoreCase("CAR")) {
 			postLog(new Log(LogLevel.Info, "Changing Mitchell Mcgovern (CAR) to Mitch Mcgovern (CAR)"));
 			return "Mitch Mcgovern";
